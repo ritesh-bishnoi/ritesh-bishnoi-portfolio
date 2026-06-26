@@ -4,6 +4,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import 'core/di/injection.dart';
 
+import 'core/theme/app_theme.dart';
 import 'features/home/presentation/pages/home_page.dart';
 
 import 'features/projects/presentation/bloc/bloc/project_bloc.dart';
@@ -25,14 +26,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: AppTheme.dark(),
       home: MultiBlocProvider(
         providers: [
-          BlocProvider(
-            create: (_) => sl<ProjectBloc>(),
-          ),
-          BlocProvider(
-            create: (_) => sl<ContactBloc>(),
-          ),
+          BlocProvider(create: (_) => sl<ProjectBloc>()),
+          BlocProvider(create: (_) => sl<ContactBloc>()),
         ],
         child: const HomePage(),
       ),
